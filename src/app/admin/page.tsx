@@ -1,5 +1,8 @@
 import { prisma } from '@/lib/db'
 
+// 禁用静态生成，使用动态渲染
+export const dynamic = 'force-dynamic'
+
 export default async function AdminPage() {
   const users = await prisma.waitlistUser.findMany({
     orderBy: {
@@ -57,7 +60,7 @@ export default async function AdminPage() {
                     </td>
                   </tr>
                 ) : (
-                  users.map((user: any, index: number) => (
+                  users.map((user: { id: string; email: string; createdAt: Date }, index: number) => (
                     <tr key={user.id} className="hover:bg-gray-50">
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                         {index + 1}

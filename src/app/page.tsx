@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import Image from "next/image";
 
 export default function Home() {
   const [email, setEmail] = useState('')
@@ -33,10 +32,10 @@ export default function Home() {
         setMessage(data.error)
         setIsSuccess(false)
       }
-    } catch (error) {
-      setMessage('网络错误，请稍后重试')
-      setIsSuccess(false)
-    } finally {
+          } catch {
+        setMessage('网络错误，请稍后重试')
+        setIsSuccess(false)
+      } finally {
       setIsLoading(false)
     }
   }
